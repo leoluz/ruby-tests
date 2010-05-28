@@ -23,4 +23,3 @@ puts "Usando o metodo inject para armazenar o valor total da soma dos elementos:
 
 total = [1,2,3,4,5].inject(1) { |produto, elemento| produto * elemento }
 puts "Usando o metodo inject para armazenar o produto de todos elementos: #{total}"
-
