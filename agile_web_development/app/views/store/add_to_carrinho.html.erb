@@ -1,0 +1,7 @@
+<h2>Seu Carrinho Pratico</h2>
+<ul>
+  <% for item in @carrinho.items -%>
+    <li><%= item.quantidade %> &times; <%=h item.titulo %></li>
+    
+  <% end -%>
+</ul>

@@ -1,0 +1,32 @@
+<div id="product-list">
+  <h1>Listing produtos</h1>
+
+  <table>
+
+  <% @produtos.each do |produto| %>
+
+    <tr class="<%= cycle 'list-line-odd', 'list-line-even' %>">
+
+      <td><%= image_tag produto.image_url, :class => 'list-image' %></td>
+
+      <td class="list-description">
+        <dl>
+          <dt><%=h produto.titulo %></dt>
+          <dd><%=h truncate(produto.descricao.gsub(/<.*?>/,''), :length => 80) %></dd>
+        </dl>
+      </td>
+
+      <td>
+        <%= link_to 'Show', produto %>
+        <%= link_to 'Edit', edit_produto_path(produto) %>
+        <%= link_to 'Destroy', produto, :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+<br />
+
+<%= link_to 'New produto', new_produto_path %>

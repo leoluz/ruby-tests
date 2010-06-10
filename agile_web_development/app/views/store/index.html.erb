@@ -1,0 +1,18 @@
+<h1>Um catalogo legal</h1>
+
+<% for produto in @produtos -%>
+  <div class="entry">
+    <%= link_to image_tag(produto.image_url), :method => 'POST' %>
+    <h3>
+      <%=h produto.titulo %>
+    </h3>
+    <%= produto.descricao %>
+    <br />
+    <div class="price-line">
+      <span class="price">
+        <%= number_to_currency(produto.preco, :unit => 'R$', :separator => ',') %>
+      </span>
+      <%= button_to "Adicionar no Carrinho", :action => 'add_to_carrinho', :id => produto %>
+    </div>
+  </div>
+<% end %>
