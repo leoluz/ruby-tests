@@ -8,6 +8,10 @@ class StoreController < ApplicationController
     produto = Produto.find(params[:id])
     @carrinho = find_carrinho
     @carrinho.add_produto(produto)
+  rescue ActiveRecord::RecordNotFound
+    logger.error("Tentativa de acessar um produto com codigo invalido #{params[:id]}")
+    flash[:notice] = "Produto Invalido"
+    redirect_to :action => 'index'
   end
 
 private
