@@ -1,22 +1,40 @@
 class StoreController < ApplicationController
 
+  attr_reader :contador
+
   def index
     @produtos = Produto.find_produtos_a_venda
+    @contador = inc_contador
   end
 
   def add_to_carrinho
     produto = Produto.find(params[:id])
     @carrinho = find_carrinho
     @carrinho.add_produto(produto)
+    session[:contador] = nil
   rescue ActiveRecord::RecordNotFound
     logger.error("Tentativa de acessar um produto com codigo invalido #{params[:id]}")
-    flash[:notice] = "Produto Invalido"
-    redirect_to :action => 'index'
+    redirect_to_index 'Produto Invalido'
+  end
+
+  def limpar_carrinho
+    session[:carrinho] = nil
+    redirect_to_index 'O seu carrinho esta vazio' 
   end
 
 private
 
   def find_carrinho
     session[:carrinho] ||= Carrinho.new
+  end
+
+  def redirect_to_index(msg)
+    flash[:notice] = msg
+    redirect_to :action => 'index'
+  end
+
+  def inc_contador
+    session[:contador] ||= 0
+    session[:contador] += 1
   end
 end

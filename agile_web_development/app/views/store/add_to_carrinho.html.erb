@@ -1,7 +1,18 @@
-<h2>Seu Carrinho Pratico</h2>
-<ul>
+<div class="cart-title">Seu Carrinho</div>
+<table>
   <% for item in @carrinho.items -%>
-    <li><%= item.quantidade %> &times; <%=h item.titulo %></li>
-    
+    <tr>
+      <td><%= item.quantidade %>&times;</td>
+      <td><%=h item.titulo %></td>
+      <td class="item-price"><%= number_to_currency(item.preco) %></td>
+    </tr>
   <% end -%>
-</ul>
+
+  <tr class="total-line">
+    <td colspan="2">Total</td>
+    <td class="total-cell"><%= number_to_currency(@carrinho.preco_total) %></td>
+  </tr>
+
+</table>
+
+<%= button_to 'Limpar Carrinho', :action => 'limpar_carrinho' %>

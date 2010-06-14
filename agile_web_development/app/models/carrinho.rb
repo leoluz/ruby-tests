@@ -15,4 +15,8 @@ class Carrinho
     end
   end
 
+  def preco_total
+    @items.sum { |item| item.preco }
+  end
+
 end
