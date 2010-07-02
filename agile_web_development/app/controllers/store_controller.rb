@@ -11,7 +11,7 @@ class StoreController < ApplicationController
   def add_to_carrinho
     produto = Produto.find(params[:id])
     @carrinho = find_carrinho
-    @carrinho.add_produto(produto)
+    @current_item = @carrinho.add_produto(produto)
     session[:contador] = nil
     respond_to do |format|
       format.js

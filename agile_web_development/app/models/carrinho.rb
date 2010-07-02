@@ -11,8 +11,10 @@ class Carrinho
     if current_item
       current_item.incrementa_quantidade
     else
-      @items << ItemCarrinho.new(produto)
+      current_item = ItemCarrinho.new(produto) 
+      @items << current_item
     end
+    current_item
   end
 
   def preco_total
