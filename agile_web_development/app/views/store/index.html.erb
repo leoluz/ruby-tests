@@ -13,10 +13,17 @@
     <%= produto.descricao %>
     <br />
     <div class="price-line">
+
       <span class="price">
         <%= number_to_currency(produto.preco, :unit => 'R$', :separator => ',') %>
       </span>
-      <%= button_to "Adicionar no Carrinho", :action => 'add_to_carrinho', :id => produto %>
+
+      <!--%= button_to "Adicionar no Carrinho", :action => 'add_to_carrinho', :id => produto %-->
+
+      <% form_remote_tag :url => { :action => 'add_to_carrinho', :id => produto } do %>
+        <%= submit_tag "Adicionar no Carrinho" %>
+      <% end %>
+
     </div>
   </div>
 <% end %>
