@@ -4,6 +4,7 @@ class StoreController < ApplicationController
 
   def index
     @produtos = Produto.find_produtos_a_venda
+    @carrinho = find_carrinho
     @contador = inc_contador
   end
 
@@ -12,6 +13,7 @@ class StoreController < ApplicationController
     @carrinho = find_carrinho
     @carrinho.add_produto(produto)
     session[:contador] = nil
+    redirect_to_index
   rescue ActiveRecord::RecordNotFound
     logger.error("Tentativa de acessar um produto com codigo invalido #{params[:id]}")
     redirect_to_index 'Produto Invalido'
@@ -28,8 +30,8 @@ private
     session[:carrinho] ||= Carrinho.new
   end
 
-  def redirect_to_index(msg)
-    flash[:notice] = msg
+  def redirect_to_index(msg = nil)
+    flash[:notice] = msg if msg
     redirect_to :action => 'index'
   end
 

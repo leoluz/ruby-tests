@@ -1,0 +1,13 @@
+<div class="cart-title">Seu Carrinho</div>
+<table>
+
+  <%= render(:partial => "carrinho_item", :collection => carrinho.items) %>
+
+  <tr class="total-line">
+    <td colspan="2">Total</td>
+    <td class="total-cell"><%= number_to_currency(carrinho.preco_total) %></td>
+  </tr>
+
+</table>
+
+<%= button_to 'Limpar Carrinho', :action => 'limpar_carrinho' %> 
