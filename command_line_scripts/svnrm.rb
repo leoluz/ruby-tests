@@ -17,7 +17,7 @@
 #     svnrm ./my_project
 #
 # == FAQ
-#   1. Hey Leo! Haven't you ever heard about Cmdparse or even Thor gems??
+#   1. Hey! Haven't you ever heard about Cmdparse or even Thor gems??
 #   R. Yes I did. I just like to write the most independent script possible. BTW, native
 #      ruby OptionParser already does a lot of the dirty work. :)
 #
